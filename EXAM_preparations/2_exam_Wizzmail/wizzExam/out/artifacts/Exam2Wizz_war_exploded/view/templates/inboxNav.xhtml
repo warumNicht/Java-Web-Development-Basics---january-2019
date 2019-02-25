@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:component>
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+            <ul class="nav nav-pills flex-column red">
+                <h:link outcome="#{pageContext.request.contextPath}/view/compose.xhtml"
+                        class="btn btn-primary" value="Compose" />
+
+                <li class="nav-item">
+                    <h:link outcome="#{pageContext.request.contextPath}/view/inbox.xhtml"
+                            class="nav-link active" value="Inbox(#{inboxEmailsBean.getUnreadEmails()})" />
+                </li>
+
+                <li class="nav-item">
+                    <h:link outcome="#{pageContext.request.contextPath}/view/sent.xhtml"
+                            class="nav-link active" value="Sent(#{inboxEmailsBean.getSentEmails().size()})" />
+                </li>
+
+                <li class="nav-item">
+                    <h:link outcome="#{pageContext.request.contextPath}/view/draft.xhtml"
+                            class="nav-link active" value="Draft(#{inboxEmailsBean.getDraftEmails().size()})" />
+                </li>
+
+                <li class="nav-item">
+
+                    <h:link outcome="#{pageContext.request.contextPath}/view/trash.xhtml"
+                            class="nav-link active" value="Trash(#{inboxEmailsBean.getTrashEmails().size()})" />
+                </li>
+            </ul>
+        </nav>
+    </div>
+</ui:component>
+
+</html>

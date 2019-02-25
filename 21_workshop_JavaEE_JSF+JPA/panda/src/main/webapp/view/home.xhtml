@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="templates/base-layout.xhtml">
+    <ui:define name="main-content">
+
+
+        <main class="mt-3">
+
+            <c:choose>
+                <c:when test="#{session.getAttribute('role')!=null}">
+                    <h1 class="text-center">Hello, Administrator #{session.getAttribute('username')}!</h1>
+                </c:when>
+                <c:otherwise>
+                    <h1 class="text-center">Hello, #{session.getAttribute('username')}!</h1>
+                </c:otherwise>
+            </c:choose>
+
+            <hr class="hr-2 bg-panda"/>
+            <div class="d-flex justify-content-between">
+
+                <div class="w-25 bg-white">
+                    <h2 class="text-center">Pending</h2>
+                    <div class="border-panda p-3">
+
+                        <c:forEach items="#{homeBean.findPendingPackages()}" var="pak">
+                            <div class="p-2 d-flex justify-content-around">
+                                <h4 class="w-75">#{pak.description}</h4>
+                                <h:link outcome="#{pageContext.request.contextPath}/view/packages/details.xhtml?id=#{pak.id}" value="Details" class="btn bg-panda text-white w-25"/>
+                            </div>
+                        </c:forEach>
+
+
+                    </div>
+                </div>
+
+                <div class="w-25 bg-white">
+                    <h2 class="text-center">Shipped</h2>
+                    <div class="border-panda p-3">
+                        <c:forEach items="#{homeBean.findShippedPackages()}" var="pak">
+                            <div class="p-2 d-flex justify-content-around">
+                                <h4 class="w-75">#{pak.description}</h4>
+                                <h:link outcome="#{pageContext.request.contextPath}/view/packages/details.xhtml?id=#{pak.id}" value="Details" class="btn bg-panda text-white w-25"/>
+                            </div>
+                        </c:forEach>
+
+
+                    </div>
+                </div>
+                <div class="w-25 bg-white">
+                    <h2 class="text-center">Delivered</h2>
+                    <div class="border-panda p-3">
+
+                        <c:forEach items="#{homeBean.findDeliveredPackages()}" var="pak">
+                            <div class="p-2 d-flex justify-content-around">
+                                <h4 class="w-75">#{pak.description}</h4>
+
+                                <h:form>
+                                    <h:commandButton value="Acquire" action="#{homeBean.acquire(pak.id)}" class="btn bg-panda text-white"/>
+                                </h:form>
+
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+    </ui:define>
+</ui:composition>
+
+
+</html>

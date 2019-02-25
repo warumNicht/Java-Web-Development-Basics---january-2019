@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="templates/base-layout.xhtml">
+
+    <ui:define name="main-content">
+
+        <main>
+            <hr class="my-3"/>
+            <div class="text-center mb-3">
+                <h4 class="text-info">Welcome, $(#{session.getAttribute('username')})</h4>
+            </div>
+            <hr class="my-3"/>
+            <div class="container">
+
+
+                <c:forEach items="#{homeBean.findAllJobs()}" var="job" varStatus="i">
+
+                    <h:outputText value="&lt;div class='row mb-4 d-flex justify-content-around'&gt;" escape="false"
+                                  rendered="#{i.index%3==0}"/>
+
+                    <div class="col-md-3 d-flex flex-column text-center">
+
+                        <h:graphicImage value="../resources/lib/jpg/#{job.sector}.jpg"
+                                        class="img-thumbnail" width="300" height="300"/>
+
+
+                        <h5 class="text-center">#{job.profession}</h5>
+                        <h:link outcome="#{pageContext.request.contextPath}/view/jobs/details.xhtml?id=#{job.id}"
+                                value="Details" class="btn btn-info"/>
+
+                        <h:link outcome="#{pageContext.request.contextPath}/view/jobs/delete.xhtml?id=#{job.id}"
+                                value="Delete" class="btn btn-danger"/>
+                    </div>
+
+                    <h:outputText value="&lt;/div&gt;" escape="false"
+                                  rendered="#{i.index%3==2}"/>
+
+                </c:forEach>
+
+                <h:outputText value="&lt;/div&gt;" escape="false"
+                              rendered="#{homeBean.findAllJobs().size()%3!=0}"/>
+
+
+            </div>
+            <hr class="my-3"/>
+        </main>
+
+
+    </ui:define>
+
+</ui:composition>
+
+</html>

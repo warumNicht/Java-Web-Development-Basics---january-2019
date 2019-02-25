@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="templates/base-layout.xhtml"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+
+    <ui:define name="main-content">
+
+        <!--<h:outputStylesheet library="lib" name="css/bootstrap.min.css"/>-->
+        <!--<h:outputStylesheet library="lib" name="css/style.css"/>-->
+
+        <ui:include src="templates/nav.xhtml"/>
+
+        <br/>
+        <div class="container">
+            <div class="row">
+                <div class="jumbotron col-sm-12">
+                    <h:form >
+                        <div class="form-group">
+                            <label>Recipients</label>
+                            <h:inputText value="#{composeEmailBean.emailSComposeBindingModel.recipients}"
+                                          class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <h:inputText value="#{composeEmailBean.emailSComposeBindingModel.subject}"
+                                         class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <h:inputTextarea rows="5" value="#{composeEmailBean.emailSComposeBindingModel.message}"
+                                         class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Attachment</label>
+                            <h:inputText value="#{composeEmailBean.emailSComposeBindingModel.attachment}"
+                                         class="form-control"/>
+                        </div>
+                        <div class="form-group">
+
+                            <h:commandButton type="submit" action="#{composeEmailBean.send()}"
+                                             value="Send" class="btn btn-primary"/>
+
+                            <h:commandButton type="submit" action="#{composeEmailBean.save()}"
+                                             value="Save" class="btn btn-primary"/>
+
+                            <h:link outcome="#{pageContext.request.contextPath}/view/mail.xhtml"
+                                    class="btn btn-primary" value="Cancel" />
+                        </div>
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>
+
+</html>

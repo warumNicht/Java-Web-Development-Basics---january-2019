@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: andre
+  Date: 19-Feb-19
+  Time: 11:04 AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="templates/base-layout.xhtml">
+
+    <ui:define name="main-content">
+
+
+        <main>
+            <hr class="my-3"/>
+            <h1 class="text-center">Add Job</h1>
+            <hr class="hr-3"/>
+            <h:form class="mx-auto w-15" >
+                <div class="form-group">
+                    <div class="label-holder d-flex justify-content-center">
+                        <h:outputLabel for="sector" class="h3 mb-2" value="Sector"/>
+                    </div>
+                    <h:inputText value="#{jobCreateBean.jobCreateBindingModel.sector}"
+                                 id="sector" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <div class="label-holder d-flex justify-content-center">
+                        <h:outputLabel for="profession" class="h3 mb-2" value="Profession"/>
+                    </div>
+                    <h:inputText value="#{jobCreateBean.jobCreateBindingModel.profession}"
+                                 id="profession" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <div class="label-holder d-flex justify-content-center">
+                        <h:outputLabel for="salary" class="h3 mb-2" value="Salary"/>
+                    </div>
+
+                    <h:inputText value="#{jobCreateBean.jobCreateBindingModel.salary}"
+                                 type="number"
+                                 converter="javax.faces.BigDecimal"
+                                 id="salary" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <div class="label-holder d-flex justify-content-center">
+                        <h:outputLabel for="description" class="h3 mb-2" value="Description"/>
+                    </div>
+                    <h:inputTextarea rows="4" class="form-control"
+                                     value="#{jobCreateBean.jobCreateBindingModel.description}"
+                                     id="description" />
+
+                </div>
+                <div class="button-holder d-flex justify-content-center">
+                    <h:commandButton type="submit" action="#{jobCreateBean.registerJob()}" value="Register"
+                                     class="btn btn-info text-white"/>
+                </div>
+            </h:form>
+            <hr class="my-3"/>
+        </main>
+
+
+
+    </ui:define>
+
+</ui:composition>
+
+</html>

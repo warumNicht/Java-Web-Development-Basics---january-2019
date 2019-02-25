@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="templates/base-layout.xhtml">
+
+    <ui:define name="main-content">
+
+        <!--<h:outputStylesheet library="lib" name="css/bootstrap.min.css"/>-->
+        <!--<h:outputStylesheet library="lib" name="css/style.css"/>-->
+
+        <main>
+            <hr class="my-3"/>
+            <div class="jumbotron">
+                <p class="h1 display-3">Welcome to Casebook</p>
+                <p class="h3">The best Social Media Application.</p>
+                <hr class="my-3"/>
+                <p>
+                    <h:link outcome="#{pageContext.request.contextPath}/view/login.xhtml"
+                             value="Login" />
+                    if you have an account or
+                    <h:link outcome="#{pageContext.request.contextPath}/view/register.xhtml"
+                             value="Register" />
+                    now and connect to
+                    your
+                    friends.</p>
+            </div>
+            <hr class="my-3"/>
+        </main>
+
+
+    </ui:define>
+
+</ui:composition>
+
+</html>

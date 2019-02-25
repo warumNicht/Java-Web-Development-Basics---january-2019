@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="templates/base-layout.xhtml">
+
+
+    <ui:define name="main-content">
+
+        <!--<h:outputStylesheet library="lib" name="css/bootstrap.min.css"/>-->
+        <!--<h:outputStylesheet library="lib" name="css/style.css"/>-->
+
+        <ui:include src="templates/navMail.xhtml"/>
+
+        <main>
+            <div class="container-fluid">
+
+                <ui:include src="templates/inboxNav.xhtml"/>
+
+                <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 mail-area">
+                    <table class="table table-inverse">
+                        <thead>
+                        <tr>
+                            <div class="row">
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>A</th>
+                                <th>Date</th>
+                                <th></th>
+                            </div>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        <c:forEach items="#{inboxEmailsBean.getDraftEmails()}" var="email">
+                            <tr>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <td>
+                                            <h:link outcome="#{pageContext.request.contextPath}/view/details.xhtml?id=#{email.id}"
+                                                    value="#{email.subject}"/>
+                                        </td>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <td>
+                                            <h:link outcome="#{pageContext.request.contextPath}/view/details.xhtml?id=#{email.id}"
+                                                    value="#{email.message}"/>
+                                        </td>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="#{email.attachment!=null}">
+                                                    <h:link outcome="#{pageContext.request.contextPath}/view/details.xhtml?id=#{email.id}"
+                                                            value="Y"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <h:link outcome="#{pageContext.request.contextPath}/view/details.xhtml?id=#{email.id}"
+                                                            value="N"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <td>
+                                            <h:link outcome="#{pageContext.request.contextPath}/view/details.xhtml?id=#{email.id}"
+                                                    value="#{email.sendDate}"/>
+                                        </td>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <td>
+                                            <a href="" class="btn btn-danger">X</a>
+                                        </td>
+                                    </div>
+                                </div>
+                            </tr>
+                        </c:forEach>
+
+
+                        </tbody>
+                    </table>
+                </main>
+            </div>
+        </main>
+
+    </ui:define>
+
+</ui:composition>
+
+</html>
